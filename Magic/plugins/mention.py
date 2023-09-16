@@ -23,7 +23,7 @@ def get_arg(message: Message):
 spam_chats = []
 
 @ubot.on_message(filters.command("mention", prefix) & filters.me)
-async def mentionall(client: Client, message: Message):
+async def mentionall(client, message):
     await message.delete()
     chat_id = message.chat.id
     rep = message.reply_to_message
