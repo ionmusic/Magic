@@ -118,7 +118,7 @@ class DBMongo(Database):
             return x["value"]
 
     def flushall(self):
-        self.dB.drop_database("AyraDB")
+        self.dB.drop_database("DBMagic")
         self._cache.clear()
         return True
         
