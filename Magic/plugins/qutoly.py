@@ -10,7 +10,6 @@ from pyrogram import filters, Client
 from Magic.helpers import *
 from Magic import *
 from config import *
-from . import *
 
 __MODULE__ = "Quotly"
 __HELP__ = """
