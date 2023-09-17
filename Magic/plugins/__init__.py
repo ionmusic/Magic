@@ -29,5 +29,5 @@ def __list_all_modules():
 
 
 ALL_MODULES = sorted(__list_all_modules())
-print("Plugins Terinstall : %s", str(ALL_MODULES))
+print("Plugins User Terinstall : %s", str(ALL_MODULES))
 __all__ = ALL_MODULES + ["ALL_MODULES"]
