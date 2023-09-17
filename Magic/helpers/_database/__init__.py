@@ -78,9 +78,9 @@ class Database:
         return 1
 
 
-class MongoDB(_BaseDatabase):
+class DBMongo(Database):
     def __init__(self, key, dbname="DBMagic"):
-        self.dB = MongoClient(key, serverSelectionTimeoutMS=5000)
+        self.dB = MongoDB(key, serverSelectionTimeoutMS=5000)
         self.db = self.dB[dbname]
         super().__init__()
 
