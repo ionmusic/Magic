@@ -130,7 +130,6 @@ class DBRedis(Database):
         port,
         password,
         platform="",
-        logger=LOGGER,
         *args,
         **kwargs,
     ):
