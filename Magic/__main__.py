@@ -3,6 +3,9 @@ import asyncio
 from pyrogram import idle
 from Magic import *
 from Magic.helpers import *
+from Magic.helpers._database import *
+from Magic.helpers._load import *
+from uvloop import install
 
 async def done():
     try:
