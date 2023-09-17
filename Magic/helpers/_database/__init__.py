@@ -89,10 +89,6 @@ class DBRedis(Database):
         kwargs["host"] = host
         kwargs["password"] = password
         kwargs["port"] = port
-
-        kwargs["host"] = os.environ.get(f"QOVERY_REDIS_{hash_}_HOST")
-        kwargs["port"] = os.environ.get(f"QOVERY_REDIS_{hash_}_PORT")
-        kwargs["password"] = os.environ.get(f"QOVERY_REDIS_{hash_}_PASSWORD")
                 
         self.db = DBRedis(**kwargs)
         self.set = self.db.set
