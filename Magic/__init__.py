@@ -26,9 +26,3 @@ ubot = Client(
   session_string=SESSION,
   device_model="MagicProject",
 )
-
-
-from Magic.helpers._database import *
-from Magic.helpers._load import *
-
-MDB = DBMagic()
