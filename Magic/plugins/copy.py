@@ -2,7 +2,7 @@ from Magic import *
 from pyrogram import filters
 from pyrogram.types import Message
 import os
-
+from config import *
 
 @ubot.on_message(filters.command("copy", prefix) & filters.me)
 async def copy_command(client, message: Message):
