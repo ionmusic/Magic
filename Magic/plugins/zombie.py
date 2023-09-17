@@ -10,6 +10,14 @@ import asyncio
 from Magic import *
 from config import *
 
+__MODULE__ = "Zombies"
+__HELP__ = """
+Bantuan Untuk Zombies
+
+• Perintah: <code>{0}zombies</code>
+• Penjelasan: Untuk mengeluarkan akun SETAN digrup anda.
+"""
+
 @ubot.on_message(filters.command("limit", prefix) & filters.me)
 async def spamban(client, message):
     await message.edit("Tunggu sebentar...")
