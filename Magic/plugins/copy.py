@@ -13,7 +13,7 @@ from Magic.helpers import *
 from . import *
 
 __MODULE__ = "Copy"
-__HELP__ = """
+#__HELP__ = """
  Bantuan Untuk Copy
 
 • Perintah : <code>{0}copy</code> [link]
