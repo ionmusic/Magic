@@ -5,6 +5,7 @@ import sys
 
 import config
 
+from Magic import LOGGER
 from Magic.helpers._load import HOSTED_ON
 
 
