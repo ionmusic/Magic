@@ -25,6 +25,12 @@ Bantuan Untuk Voice Chat
 
 • Perintah: <code>{0}stopvc</code>
 • Penjelasan: Untuk mengakhiri voice chat grup.
+
+• Perintah: <code>{0}joinvc</code>
+• Penjelasan: Untuk Menaikkan Akun Ke Obrolan Suara.
+
+• Perintah: <code>{0}leavevc</code>
+• Penjelasan: Untuk Menurun Kan Akun Dari Obrolan Suara.
 """
 
 async def get_group_call(
