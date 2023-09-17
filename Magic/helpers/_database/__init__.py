@@ -120,14 +120,12 @@ class DBRedis(Database):
         
 def DBMagic():
     _er = False
-    from Magic.helpers._load import HOSTED_ON
     try:
-        if Redis:
-            return DBRedis(
-                host=config.REDIS_URI,
-                password=config.REDIS_PASSWORD,
+        return DBRedis(
+                host=REDIS_URI,
+                password=REDIS_PASSWORD,
                 platform=HOSTED_ON,
-                port=config.REDISPORT,
+                port=REDISPORT,
                 decode_responses=True,
                 socket_timeout=5,
                 retry_on_timeout=True,
