@@ -5,7 +5,6 @@ from pyrogram.enums import ChatType
 from pyrogram.errors.exceptions.flood_420 import FloodWait
 
 from Magic import *
-from Magic.plugins import *
 from config import *
 
 
