@@ -3,7 +3,6 @@ pillow
 aiohttp
 asyncio
 bs4
-psycopg2-binary
 motor
 redis
 heroku3
@@ -23,3 +22,4 @@ psutil
 youtube_dl
 uvloop
 gitpython
+pytgcalls==3.0.0.dev22
