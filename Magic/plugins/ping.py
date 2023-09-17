@@ -2,7 +2,7 @@ from pyrogram import Client
 from pyrogram.types import Message
 from datetime import datetime
 from Magic import *
-from Magic.plugins import *
+
 from config import *
 
 ADMIN_PES = [ 
