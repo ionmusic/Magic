@@ -16,27 +16,26 @@ async def done():
 
 async def main():
     try:
-        
+        LOGGER("info").info(f"Koneksi Ke Database {MDB.name}...")
+        if MDB.ping():
+            LOGGER("info").info(f"Koneksi Berhasil Ke {MDB.name}..")
         if bot:
             await bot.start()
             bot_id = (await bot.get_me()).username
-            LOGGER(__name__).info(f"Bot ID: {bot_id} Berhasil Diaktifkan.")
+            LOGGER("info").info(f"Bot ID: {bot_id} Berhasil Diaktifkan.")
             
         if ubot:
             await ubot.start()
             client_id = (await ubot.get_me()).id
             MDB.set_key("OWNER_ID", ubot.me.id)
-            LOGGER(__name__).info(f"Client ID: {client_id} Berhasil Diaktifkan")
-        LOGGER(__name__).info(f"Koneksi Ke Database {MDB.name}...")
-        if MDB.ping():
-            LOGGER(__name__).info(f"Koneksi Berhasil Ke {MDB.name}..")
-        await loadPlugins()
+            LOGGER("info").info(f"Client ID: {client_id} Berhasil Diaktifkan")
         
+        await loadPlugins()
         await done()
         await idle()
         await aiosession.close()
     except Exception as e:
-        LOGGER(__name__).error(f"Error: {e}")
+        LOGGER("error").error(f"Error: {e}")
 
 if __name__ == "__main__":
     install()
