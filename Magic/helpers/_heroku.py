@@ -42,9 +42,9 @@ def heroku():
             try:
                 Heroku = heroku3.from_key(HEROKU_API)
                 HAPP = Heroku.app(HEROKU_NAME)
-                LOGGER(__name__).info(f"Heroku App Configured")
+                print(f"Heroku App Configured")
             except BaseException as e:
-                LOGGER(__name__).error(e)
-                LOGGER(__name__).info(
+                print(f"{e}")
+                print(
                     f"Pastikan HEROKU_API_KEY dan HEROKU_APP_NAME anda dikonfigurasi dengan benar di config vars heroku."
                 )
