@@ -17,6 +17,5 @@ stream_handler = logging.StreamHandler()
 
 stream_handler.setFormatter(formatter)
 
-
 def LOGGER(name: str) -> logging.Logger:
     return logging.getLogger(name)
