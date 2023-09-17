@@ -10,7 +10,6 @@ from pyrogram.types import *
 from Magic import *
 from config import *
 from Magic.helpers import get_arg
-from . import *
 
 __MODULE__ = "Copy"
 
