@@ -7,6 +7,7 @@ import config
 
 from Magic.helpers._load import *
 
+Redis = None
 
 class Database:
     def __init__(self, *args, **kwargs):
