@@ -11,6 +11,17 @@ from pyrogram.types import Message
 from config import *
 from Magic import *
 
+__MODULE__ = "Asupan"
+__HELP__ = """
+ Bantuan Untuk Asupan
+
+• Perintah :  <code>{0}asupan</code>
+• Penjelasan :  Untuk mengirim video asupan.
+• Perintah : <code>{0}bokep</code>
+• Penjelasan : Untuk mengirim video bokep random.
+
+"""
+
 
 def ReplyCheck(message: Message):
     reply_id = None
