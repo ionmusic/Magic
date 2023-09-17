@@ -35,8 +35,8 @@ async def block_user_func(client: Client, message: Message):
     if mmk == client.me.id:
         return await kontol.edit("Yang Bener Kamu Tuh.")
     await client.block_user(mmk)
-    gatau = (await client.get_users(mmk)).mention
-    await message.edit(f"**Berhasil Memblokir** {gatau}")
+    umention = (await client.get_users(mmk)).mention
+    await message.edit(f"**Berhasil Memblokir** {umention}")
 
 
 @ubot.on_message(filters.command(["unblock"], prefix) & filters.me)
@@ -50,8 +50,8 @@ async def unblock_user_func(client: Client, message: Message):
     if mmk == client.me.id:
         return await kontol.edit("Yang Bener Kamu Tuh.")
     await client.unblock_user(mmk)
-    ntah = (await client.get_users(mmk)).mention
-    await message.edit(f"**Berhasil Membuka Blokir** {ntah}")
+    umention = (await client.get_users(mmk)).mention
+    await message.edit(f"**Berhasil Membuka Blokir** {umention}")
 
 
 @ubot.on_message(filters.command(["setname"], prefix) & filters.me)
@@ -62,10 +62,10 @@ async def setname(client: Client, message: Message):
             "Berikan teks untuk ditetapkan sebagai nama telegram anda."
         )
     elif len(message.command) > 1:
-        yainaja = message.text.split(None, 1)[1]
+        name = message.text.split(None, 1)[1]
         try:
-            await client.update_profile(first_name=yainaja)
-            await kontol.edit(f"**Berhasil Mengubah Nama Telegram anda Menjadi** `{yainaja}`")
+            await client.update_profile(first_name=name)
+            await kontol.edit(f"**Berhasil Mengubah Nama Telegram anda Menjadi** `{name}`")
         except Exception as e:
             await kontol.edit(f"**ERROR:** `{e}`")
     else:
@@ -91,7 +91,7 @@ async def set_bio(client: Client, message: Message):
 
 
 @ubot.on_message(filters.me & filters.command(["setpp"], prefix))
-async def set_pfp(client: Client, message: Message):
+async def set_pp(client: Client, message: Message):
     replied = message.reply_to_message
     if (
         replied
@@ -115,7 +115,7 @@ async def set_pfp(client: Client, message: Message):
 
 
 @ubot.on_message(filters.me & filters.command(["vpp"], prefix))
-async def view_pfp(client: Client, message: Message):
+async def view_pp(client: Client, message: Message):
     mmk = await extract_user(message)
     if mmk:
         anuan = await client.get_users(mmk)
