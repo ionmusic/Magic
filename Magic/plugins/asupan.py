@@ -19,7 +19,6 @@ __HELP__ = """
 • Penjelasan :  Untuk mengirim video asupan.
 • Perintah : <code>{0}bokep</code>
 • Penjelasan : Untuk mengirim video bokep random.
-
 """
 
 
