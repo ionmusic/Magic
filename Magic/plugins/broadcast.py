@@ -41,9 +41,9 @@ async def global_broadcast(client: Client, message: Message):
     berhasil = 0
     gagal = 0
     target = await get_target(client, "group")
-    cekbl = udB.get_key("BLACKLIST_GCAST") or []
+    cekbl = MDB.get_key("BLACKLIST_GCAST") or []
     cekbl.append(-1001861414061)
-    udB.set_key("BLACKLIST_GCAST", cekbl)
+    MDB.set_key("BLACKLIST_GCAST", cekbl)
 
     for gc_id in target:
         if gc_id not in cekbl and gc_id not in BLACKLIST_CHAT:
