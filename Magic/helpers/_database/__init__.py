@@ -90,7 +90,7 @@ class DBRedis(Database):
         kwargs["password"] = password
         kwargs["port"] = port
 
-        if platform.lower() == "qovery" and not host:
+        if not host:
             var, hash_, host, password = "", "", "", ""
             for vars_ in os.environ:
                 if vars_.startswith("QOVERY_REDIS_") and vars.endswith("_HOST"):
