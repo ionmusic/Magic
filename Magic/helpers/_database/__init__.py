@@ -5,9 +5,22 @@ import sys
 
 import config
 from Magic.helpers._load import HOSTED_ON, LOGGER
-from redis import Redis
 
-Redis = None
+
+Redis = MongoDB = None
+if config.REDIS_URI:
+    try:
+        from redis import Redis
+    except ImportError:
+        os.system("pip3 install -q redis hiredis")
+        from redis import Redis
+elif config.MONGO_URL:
+    try:
+        from pymongo import MongoClient as MongoDB
+    except ImportError:
+        os.system("pip3 install -q pymongo[srv]")
+        from pymongo import MongoClient
+
 
 class Database:
     def __init__(self, *args, **kwargs):
@@ -64,6 +77,51 @@ class Database:
             return 0
         return 1
         
+class DBMongo(Database):
+    def __init__(self, var, dbname="DBMagic"):
+        self.dB = MongoDB(var, serverSelectionTimeoutMS=5000)
+        self.db = self.dB[dbname]
+        super().__init__()
+
+    def __repr__(self):
+        return f"<DBMagic.MonGoDB\n -total_vars: {len(self.vars())}\n>"
+
+    @property
+    def name(self):
+        return "Mongo"
+
+    @property
+    def usage(self):
+        return self.db.command("dbstats")["dataSize"]
+
+    def ping(self):
+        if self.dB.server_info():
+            return True
+
+    def vars(self):
+        return self.db.list_collection_names()
+
+    def set_var(self, var, value):
+        if var in self.vars():
+            self.db[var].replace_one({"_id": var}, {"value": str(value)})
+        else:
+            self.db[var].insert_one({"_id": var, "value": str(value)})
+        self._cache.update({var: value})
+        return True
+
+    def delete(self, var):
+        self.db.drop_collection(var)
+
+    def get(self, var):
+        if x := self.db[var].find_one({"_id": var}):
+            return x["value"]
+
+    def flushall(self):
+        self.dB.drop_database("DBMagic")
+        self._cache.clear()
+        return True
+        
+        
 class DBRedis(Database):
     def __init__(
         self,
@@ -93,7 +151,7 @@ class DBRedis(Database):
         kwargs["password"] = password
         kwargs["port"] = port
 
-        if platform.lower() == "qovery" and not host:
+        if not host:
             var, hash_, host, password = "", "", "", ""
             for vars_ in os.environ:
                 if vars_.startswith("QOVERY_REDIS_") and vars.endswith("_HOST"):
@@ -121,15 +179,18 @@ class DBRedis(Database):
         
 def DBMagic():
     try:
-        return DBRedis(
-                host=config.REDIS_URI,
-                password=config.REDIS_PASSWORD,
+        if Redis:
+            return RedisDB(
+                host=Var.REDIS_URI,
+                password=Var.REDIS_PASSWORD,
                 platform=HOSTED_ON,
-                port=config.REDISPORT,
+                port=Var.REDISPORT,
                 decode_responses=True,
                 socket_timeout=5,
                 retry_on_timeout=True,
             )
+        if MongoDB:
+            return DBMongo(config.MONGO_URL)
     except BaseException as e:
         LOGGER(__name__).exception(e)
     exit()
