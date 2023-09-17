@@ -16,6 +16,12 @@ Bantuan Untuk Zombies
 
 • Perintah: <code>{0}zombies</code>
 • Penjelasan: Untuk mengeluarkan akun SETAN digrup anda.
+
+• Perintah: <code>{0}limit</code>
+• Penjelasan: Untuk mengecek akun anda di batasi atau tidak.
+
+• Perintah: <code>{0}kickall</code>
+• Penjelasan: Untuk mengeluarkan semua member group anda.
 """
 
 @ubot.on_message(filters.command("limit", prefix) & filters.me)
