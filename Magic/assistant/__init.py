@@ -1,5 +1,5 @@
-
 from config import BOT_LOAD, BOT_NOLOAD
+
 
 def __list_all_modules():
     from os.path import dirname, basename, isfile
@@ -14,14 +14,14 @@ def __list_all_modules():
         to_load = BOT_LOAD
         if to_load:
             if not all(any(mod == module_name for module_name in all_modules) for mod in to_load):
-                print("Tidak dapat mengimport plugis")
+                print("Check plugins asisstant!")
                 quit(1)
 
         else:
             to_load = all_modules
 
         if BOT_NOLOAD:
-            print("Plugins tidak terpasang{}".format(BOT_NOLOAD))
+            log.info("Not loaded: {}".format(BOT_NOLOAD))
             return [item for item in to_load if item not in BOT_NOLOAD]
 
         return to_load
@@ -30,5 +30,5 @@ def __list_all_modules():
 
 
 ALL_SETTINGS = sorted(__list_all_modules())
-print("Plugins Bot Terinstall : %s", str(ALL_SETTINGS))
+log.info("Assistant bot plugins loaded: %s", str(ALL_SETTINGS))
 __all__ = ALL_SETTINGS + ["ALL_SETTINGS"]
