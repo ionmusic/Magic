@@ -5,7 +5,7 @@ from pyrogram import idle
 from Magic import *
 from Magic.helpers import *
 from Magic.helpers._database import *
-from Magic.assistant import ALL_SETTINGS
+#from Magic.assistant import ALL_SETTINGS
 from Magic.plugins import ALL_MODULES
 
 from uvloop import install
@@ -19,9 +19,9 @@ async def done():
 
 async def main():
     await bot.start()
-    for x in ALL_SETTINGS:
-        imported_module = importlib.import_module("Magic.assistant." + x)
-        importlib.reload(imported_module)
+    #for x in ALL_SETTINGS:
+        #imported_module = importlib.import_module("Magic.assistant." + x)
+        #importlib.reload(imported_module)
     await ubot.start()
     for xx in ALL_MODULES:
         imported_module = importlib.import_module("Magic.plugins." + xx)
