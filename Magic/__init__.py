@@ -3,6 +3,7 @@ import asyncio
 
 from aiohttp import ClientSession
 from Magic.helpers._load import *
+from Magic.helpers._database import * 
 
 aiosession = ClientSession()
 
@@ -13,3 +14,5 @@ event_loop = loop.get_event_loop()
 bot = MPBot()
 
 ubot = MPUser()
+
+MDB = DBMagic()
