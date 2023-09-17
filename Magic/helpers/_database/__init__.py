@@ -22,21 +22,21 @@ elif config.MONGO_URL:
         from pymongo import MongoClient
 
 
-class Database:
+claclass Database:
     def __init__(self, *args, **kwargs):
         self._cache = {}
 
-    def get_var(self, var):
-        if var in self._cache:
-            return self._cache[var]
-        value = self._get_data(var)
-        self._cache.update({var: value})
+    def get_key(self, key):
+        if key in self._cache:
+            return self._cache[key]
+        value = self._get_data(key)
+        self._cache.update({key: value})
         return value
 
     def re_cache(self):
         self._cache.clear()
-        for var in self.vars():
-            self._cache.update({var: self.get_var(var)})
+        for key in self.keys():
+            self._cache.update({key: self.get_key(key)})
 
     def ping(self):
         return 1
@@ -45,18 +45,18 @@ class Database:
     def usage(self):
         return 0
 
-    def vars(self):
+    def keys(self):
         return []
 
-    def del_var(self, var):
-        if var in self._cache:
-            del self._cache[var]
-        self.delete(var)
+    def del_key(self, key):
+        if key in self._cache:
+            del self._cache[key]
+        self.delete(key)
         return True
 
-    def _get_data(self, var=None, data=None):
-        if var:
-            data = self.get(str(var))
+    def _get_data(self, key=None, data=None):
+        if key:
+            data = self.get(str(key))
         if data:
             try:
                 data = ast.literal_eval(data)
@@ -64,27 +64,28 @@ class Database:
                 pass
         return data
 
-    def set_var(self, var, value):
+    def set_key(self, key, value):
         value = self._get_data(data=value)
-        self._cache[var] = value
-        return self.set(str(var), str(value))
+        self._cache[key] = value
+        return self.set(str(key), str(value))
 
-    def rename(self, var1, var2):
-        _ = self.get_var(var1)
+    def rename(self, key1, key2):
+        _ = self.get_key(key1)
         if _:
-            self.del_var(var1)
-            self.set_var(var2, _)
+            self.del_key(key1)
+            self.set_key(key2, _)
             return 0
         return 1
-        
-class DBMongo(Database):
-    def __init__(self, var, dbname="DBMagic"):
-        self.dB = MongoDB(var, serverSelectionTimeoutMS=5000)
+
+
+class MongoDB(_BaseDatabase):
+    def __init__(self, key, dbname="DBMagic"):
+        self.dB = MongoClient(key, serverSelectionTimeoutMS=5000)
         self.db = self.dB[dbname]
         super().__init__()
 
     def __repr__(self):
-        return f"<DBMagic.MonGoDB\n -total_vars: {len(self.vars())}\n>"
+        return f"<Magic.DBMongo\n -total_keys: {len(self.keys())}\n>"
 
     @property
     def name(self):
@@ -98,26 +99,26 @@ class DBMongo(Database):
         if self.dB.server_info():
             return True
 
-    def vars(self):
+    def keys(self):
         return self.db.list_collection_names()
 
-    def set_var(self, var, value):
-        if var in self.vars():
-            self.db[var].replace_one({"_id": var}, {"value": str(value)})
+    def set_key(self, key, value):
+        if key in self.keys():
+            self.db[key].replace_one({"_id": key}, {"value": str(value)})
         else:
-            self.db[var].insert_one({"_id": var, "value": str(value)})
-        self._cache.update({var: value})
+            self.db[key].insert_one({"_id": key, "value": str(value)})
+        self._cache.update({key: value})
         return True
 
-    def delete(self, var):
-        self.db.drop_collection(var)
+    def delete(self, key):
+        self.db.drop_collection(key)
 
-    def get(self, var):
-        if x := self.db[var].find_one({"_id": var}):
+    def get(self, key):
+        if x := self.db[key].find_one({"_id": key}):
             return x["value"]
 
     def flushall(self):
-        self.dB.drop_database("DBMagic")
+        self.dB.drop_database("AyraDB")
         self._cache.clear()
         return True
         
@@ -175,7 +176,7 @@ class DBRedis(Database):
 
     @property
     def usage(self):
-        return sum(self.db.memory_usage(x) for x in self.vars())
+        return sum(self.db.memory_usage(x) for x in self.keys())
         
 def DBMagic():
     try:
