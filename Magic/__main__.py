@@ -1,7 +1,6 @@
 import asyncio
 
-from pyrogram.errors import RPCError
-from pyrogram.methods.utilities.idle import idle
+from pyrogram import idle
 from Magic import *
 from Magic.helpers import *
 
@@ -39,6 +38,7 @@ async def main():
         LOGGER(_name__).error(f"Error: {e}")
 
 if __name__ == "__main__":
-    #install()
-    #heroku()
-    loop.run_until_complete(main())
+    install()
+    heroku()
+    asyncio.set_event_loop(event_loop)
+    event_loop.run_until_complete(main())
