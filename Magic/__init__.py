@@ -5,11 +5,15 @@ from aiohttp import ClientSession
 
 from config import *
 from pyrogram import *
+
 from Magic.helpers._database import DBMagic
+from Magic.helpers._load import LOGGER
+
+aiosession = ClientSession()
 
 MDB = DBMagic()
 
-aiosession = ClientSession()
+LOGGER = LOGGER
 
 bot = Client(
   name="bot",
@@ -26,17 +30,7 @@ ubot = Client(
   device_model="MagicProject",
 )
 
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
 
-formatter = logging.Formatter("[%(levelname)s] - %(name)s - %(message)s", "%d-%b %H:%M")
-stream_handler = logging.StreamHandler()
-
-stream_handler.setFormatter(formatter)
-
-
-def LOGGER(name: str) -> logging.Logger:
-    return logging.getLogger(name)
 
 if not API_ID:
     print("Silakan Masukkan API_ID")
@@ -53,3 +47,4 @@ if not BOT_TOKEN:
 if not SESSION:
     print("Silakan Masukkan SESSION")
     sys.exit()
+
