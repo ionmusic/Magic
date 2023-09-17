@@ -56,7 +56,7 @@ async def main():
     print("+===============================================================+")
     print("|                    Assistant Modules                          |")
     print("+===============+===============+===============+===============+")
-    print(bot_ubot)
+    #print(bot_ubot)
     print("+===============+===============+===============+===============+")
     print("Berhasil Menginstall Plugins")
     try:
