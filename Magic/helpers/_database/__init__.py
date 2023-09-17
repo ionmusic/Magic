@@ -4,8 +4,7 @@ import os
 import sys
 
 import config
-
-from Magic.helpers._load import *
+from Magic.helpers._load import HOSTED_ON, LOGGER
 
 Redis = None
 
@@ -121,6 +120,7 @@ class DBRedis(Database):
         
 def DBMagic():
     _er = False
+    from Magic.helpers._load import HOSTED_ON
     try:
         if Redis:
             return DBRedis(
