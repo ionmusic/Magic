@@ -5,6 +5,9 @@ import sys
 
 import config
 from Magic.helpers._load import HOSTED_ON, LOGGER
+from redis import Redis
+
+Redis = None
 
 class Database:
     def __init__(self, *args, **kwargs):
@@ -89,8 +92,19 @@ class DBRedis(Database):
         kwargs["host"] = host
         kwargs["password"] = password
         kwargs["port"] = port
-                
-        self.db = DBRedis(**kwargs)
+
+        if platform.lower() == "qovery" and not host:
+            var, hash_, host, password = "", "", "", ""
+            for vars_ in os.environ:
+                if vars_.startswith("QOVERY_REDIS_") and vars.endswith("_HOST"):
+                    var = vars_
+            if var:
+                hash_ = var.split("_", maxsplit=2)[1].split("_")[0]
+            if hash:
+                kwargs["host"] = os.environ.get(f"QOVERY_REDIS_{hash_}_HOST")
+                kwargs["port"] = os.environ.get(f"QOVERY_REDIS_{hash_}_PORT")
+                kwargs["password"] = os.environ.get(f"QOVERY_REDIS_{hash_}_PASSWORD")
+        self.db = Redis(**kwargs)
         self.set = self.db.set
         self.get = self.db.get
         self.vars = self.db.vars
