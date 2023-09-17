@@ -4,7 +4,7 @@ import os
 import sys
 
 import config
-from Magic.helpers._load import HOSTED_ON, LOGGER
+from Magic.helpers._load import HOSTED_ON
 
 
 Redis = MongoDB = None
@@ -139,12 +139,12 @@ class DBRedis(Database):
             host = spli_[0]
             port = int(spli_[-1])
             if host.startswith("http"):
-                LOGGER(__name__).error("REDIS_URI tidak perlu menggunakan https://")
+                print("REDIS_URI tidak perlu menggunakan https://")
                 import sys
 
                 sys.exit()
         elif not host or not port:
-            LOGGER(__name__).error("Port tidak ditemukan.")
+            print("Port tidak ditemukan.")
             import sys
 
             sys.exit()
