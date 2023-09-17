@@ -31,4 +31,4 @@ def __list_all_modules():
 
 ALL_SETTINGS = sorted(__list_all_modules())
 print("Plugins Bot Terinstall : %s", str(ALL_SETTINGS))
-__all__ = ALL_MODULES + ["ALL_MODULES"]
+__all__ = ALL_SETTINGS + ["ALL_SETTINGS"]
