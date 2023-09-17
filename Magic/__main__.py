@@ -13,7 +13,9 @@ async def done():
 
 async def main():
     try:
-        cek_db = MDB
+        LOGGER(_name__).info(f"Koneksi Ke Database {MDB.name}...")
+        if MDB.ping():
+            LOGGER(_name__).info(f"Koneksi Berhasil Ke {MDB.name}..")
         if bot:
             await bot.start()
             bot_id = (await bot.get_me()).username
@@ -22,6 +24,7 @@ async def main():
         if ubot:
             await ubot.start()
             client_id = (await ubot.get_me()).id
+            MDB.set_key("OWNER_ID", ubot.me.id)
             print(f"Client ID: {client_id} Berhasil Diaktifkan")
             
         await loadPlugins()
@@ -31,4 +34,7 @@ async def main():
         print(f"Error: {e}")
 
 if __name__ == "__main__":
-    get_event_loop_policy().get_event_loop().run_until_complete(main())
+    install()
+    heroku()
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())
