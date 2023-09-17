@@ -12,8 +12,6 @@ aiosession = ClientSession()
 loop = asyncio.get_event_loop_policy()
 event_loop = loop.get_event_loop()
 
-MDB = DBMagic()
-
 bot = Client(
   name="bot",
   api_id=API_ID,
@@ -32,3 +30,5 @@ ubot = Client(
 
 from Magic.helpers._database import *
 from Magic.helpers._load import *
+
+MDB = DBMagic()
