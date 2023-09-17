@@ -1,5 +1,5 @@
 
-from config import LOAD, NOLOAD
+from config import BOT_LOAD, BOT_NOLOAD
 
 def __list_all_modules():
     from os.path import dirname, basename, isfile
