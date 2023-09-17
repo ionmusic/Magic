@@ -10,7 +10,16 @@ from pyrogram.types import Message
 from config import *
 from Magic import *
 
+__MODULE__ = "Mention"
+__HELP__ = """
+ Bantuan Untuk Mention
 
+• Perintah :  <code>mention</code>
+• Penjelasan : Untuk melakukan mention.
+
+• Perintah : <code>cancel</code>
+• Penjelasan : Untuk memberhentikan mention.
+"""
 
 def get_arg(message: Message):
     msg = message.text
