@@ -8,7 +8,7 @@ from config import *
 from pyrogram import *
 
 from Magic.helpers._database import *
-from Magic.helpers._load import *
+#from Magic.helpers._load import *
 
 aiosession = ClientSession()
 
@@ -31,22 +31,3 @@ ubot = Client(
   session_string=SESSION,
   device_model="MagicProject",
 )
-
-
-
-if not API_ID:
-    print("Silakan Masukkan API_ID")
-    sys.exit()
-
-if not API_HASH:
-    print("Silakan Masukkan API_HASH")
-    sys.exit()
-
-if not BOT_TOKEN:
-    print("Silakan Masukkan BOT_TOKEN")
-    sys.exit()
-
-if not SESSION:
-    print("Silakan Masukkan SESSION")
-    sys.exit()
-
