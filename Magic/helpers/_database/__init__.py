@@ -119,24 +119,18 @@ class DBRedis(Database):
         return sum(self.db.memory_usage(x) for x in self.vars())
         
 def DBMagic():
-    _er = False
     try:
         return DBRedis(
-                host=REDIS_URI,
-                password=REDIS_PASSWORD,
+                host=config.REDIS_URI,
+                password=config.REDIS_PASSWORD,
                 platform=HOSTED_ON,
-                port=REDISPORT,
+                port=config.REDISPORT,
                 decode_responses=True,
                 socket_timeout=5,
                 retry_on_timeout=True,
             )
     except BaseException as e:
         LOGGER(__name__).exception(e)
-        _er = True
-    if not _er:
-        LOGGER(__name__).critical(
-            "No DB requirement fullfilled!\nPlease install redis, mongo or sql dependencies...\nTill then using local file as database."
-        )
     exit()
     
     
