@@ -10,7 +10,6 @@ from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
 
 from config import HEROKU_API, HEROKU_NAME
-from Magic.helpers._load import LOGGER
 
 HAPP = None
 
@@ -46,5 +45,5 @@ def heroku():
             except BaseException as e:
                 print(f"{e}")
                 print(
-                    f"Pastikan HEROKU_API_KEY dan HEROKU_APP_NAME anda dikonfigurasi dengan benar di config vars heroku."
+                    f"Pastikan HEROKU_API dan HEROKU_NAME anda dikonfigurasi dengan benar di config vars heroku."
                 )
