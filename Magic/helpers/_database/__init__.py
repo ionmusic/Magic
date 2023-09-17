@@ -22,7 +22,7 @@ elif config.MONGO_URL:
         from pymongo import MongoClient
 
 
-claclass Database:
+class Database:
     def __init__(self, *args, **kwargs):
         self._cache = {}
 
