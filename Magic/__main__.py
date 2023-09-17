@@ -36,7 +36,7 @@ async def main():
         await idle()
         await aiosession.close()
     except Exception as e:
-        LOGGER(_name__).error(f"Error: {e}")
+        LOGGER(__name__).error(f"Error: {e}")
 
 if __name__ == "__main__":
     install()
