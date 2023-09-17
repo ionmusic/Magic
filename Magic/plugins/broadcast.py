@@ -8,6 +8,14 @@ from Magic import *
 from Magic.plugins import *
 from config import *
 
+__MODULE__ = "Gcast"
+__HELP__ = """
+ Bantuan Untuk Gcast
+
+• Perintah : <code>{0}gcast</code> [balas pesan/kirim pesan]
+• Penjelasan : Untuk pengirim pesan ke semua grup.
+"""
+
 
 def extract_argument(message: Message):
     pesan = message.text
