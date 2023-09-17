@@ -39,6 +39,6 @@ async def main():
         LOGGER(_name__).error(f"Error: {e}")
 
 if __name__ == "__main__":
-    install()
-    heroku()
+    #install()
+    #heroku()
     loop.run_until_complete(main())
