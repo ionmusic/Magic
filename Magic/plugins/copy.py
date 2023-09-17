@@ -38,37 +38,22 @@ async def copy(client, message):
         except RPCError:
             await message.edit("Something is went wrong...")
     laras = bkp.caption or None
-    if bkp.text:
-        await bkp.copy(message.chat.id)
+            if bkp.text or bkp.photo or bkp.video or bkp.audio or bkp.voice or bkp.document:
+            media = await client.download_media(bkp)
+            if bkp.text:
+                await bkp.copy(message.chat.id)
+            elif bkp.photo:
+                await client.send_photo(message.chat.id, media, caption=laras)
+            elif bkp.video:
+                await client.send_video(message.chat.id, media, caption=laras)
+            elif bkp.audio:
+                await client.send_audio(message.chat.id, media, caption=laras)
+            elif bkp.voice:
+                await client.send_voice(message.chat.id, media, caption=laras)
+            elif bkp.document:
+                await client.send_document(message.chat.id, media, caption=laras)
+            os.remove(media)
+        else:
+            await message.edit("Failed to download the content...")
+        
         await message.delete()
-    if bkp.photo:
-        xpt = await client.download_media(bkp)
-        await client.send_photo(message.chat.id, xpt, laras)
-        await message.delete()
-        os.remove(xpt)
-
-    if bkp.video:
-        xvid = await client.download_media(bkp)
-        await client.send_video(message.chat.id, xvid, laras)
-        await message.delete()
-        os.remove(xvid)
-
-    if bkp.audio:
-        xaud = await client.download_media(bkp)
-        await client.send_audio(message.chat.id, xaud, laras)
-        await message.delete()
-        os.remove(xaud)
-
-    if bkp.voice:
-        xvc = await client.download_media(bkp)
-        await client.send_voice(message.chat.id, xvc, laras)
-        await message.delete()
-        os.remove(xvc)
-
-    if bkp.document:
-        xdoc = await client.download_media(bkp)
-        await client.send_document(message.chat.id, xdoc, laras)
-        await message.delete()
-        os.remove(xdoc)
-    else:
-        await message.edit("Failed to downloading the content.....")
