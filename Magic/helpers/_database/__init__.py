@@ -165,7 +165,7 @@ class DBRedis(Database):
         self.db = Redis(**kwargs)
         self.set = self.db.set
         self.get = self.db.get
-        self.vars = self.db.vars
+        self.keys = self.db.keys
         self.delete = self.db.delete
         super().__init__()
 
