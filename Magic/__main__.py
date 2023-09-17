@@ -5,7 +5,7 @@ from pyrogram import idle
 from Magic import *
 from Magic.helpers import *
 from Magic.helpers._database import *
-from Magic.assistant import ALL_SETTINGS
+#from Magic.assistant import ALL_SETTINGS
 from Magic.plugins import ALL_MODULES
 
 from uvloop import install
