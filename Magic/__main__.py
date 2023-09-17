@@ -19,19 +19,20 @@ async def main():
         if bot:
             await bot.start()
             bot_id = (await bot.get_me()).username
-            print(f"Bot ID: {bot_id} Berhasil Diaktifkan.")
+            LOGGER(_name__).info(f"Bot ID: {bot_id} Berhasil Diaktifkan.")
             
         if ubot:
             await ubot.start()
             client_id = (await ubot.get_me()).id
             MDB.set_key("OWNER_ID", ubot.me.id)
-            print(f"Client ID: {client_id} Berhasil Diaktifkan")
+            LOGGER(_name__).info(f"Client ID: {client_id} Berhasil Diaktifkan")
             
         await loadPlugins()
         await done()
         await idle()
+        await aiosession.close()
     except Exception as e:
-        print(f"Error: {e}")
+        LOGGER(_name__).error(f"Error: {e}")
 
 if __name__ == "__main__":
     install()
