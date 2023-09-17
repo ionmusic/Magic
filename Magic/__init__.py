@@ -6,14 +6,12 @@ from aiohttp import ClientSession
 from config import *
 from pyrogram import *
 
-from Magic.helpers._database import DBMagic
-from Magic.helpers._load import LOGGER
+from Magic.helpers._database import *
+from Magic.helpers._load import *
 
 aiosession = ClientSession()
 
 MDB = DBMagic()
-
-LOGGER = LOGGER
 
 bot = Client(
   name="bot",
