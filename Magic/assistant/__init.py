@@ -29,6 +29,6 @@ def __list_all_modules():
     return all_modules
 
 
-ALL_MODULES = sorted(__list_all_modules())
-print("Plugins Bot Terinstall : %s", str(ALL_MODULES))
+ALL_SETTINGS = sorted(__list_all_modules())
+print("Plugins Bot Terinstall : %s", str(ALL_SETTINGS))
 __all__ = ALL_MODULES + ["ALL_MODULES"]
