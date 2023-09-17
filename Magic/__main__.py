@@ -1,4 +1,5 @@
-from asyncio import get_event_loop_policy
+import asyncio
+
 from pyrogram.errors import RPCError
 from pyrogram.methods.utilities.idle import idle
 from Magic import *
@@ -13,9 +14,7 @@ async def done():
 
 async def main():
     try:
-        LOGGER(_name__).info(f"Koneksi Ke Database {MDB.name}...")
-        if MDB.ping():
-            LOGGER(_name__).info(f"Koneksi Berhasil Ke {MDB.name}..")
+        
         if bot:
             await bot.start()
             bot_id = (await bot.get_me()).username
@@ -26,8 +25,11 @@ async def main():
             client_id = (await ubot.get_me()).id
             MDB.set_key("OWNER_ID", ubot.me.id)
             LOGGER(_name__).info(f"Client ID: {client_id} Berhasil Diaktifkan")
-            
+        LOGGER(_name__).info(f"Koneksi Ke Database {MDB.name}...")
+        if MDB.ping():
+            LOGGER(_name__).info(f"Koneksi Berhasil Ke {MDB.name}..")
         await loadPlugins()
+        
         await done()
         await idle()
         await aiosession.close()
