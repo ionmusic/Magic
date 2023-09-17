@@ -12,6 +12,14 @@ from Magic import *
 from config import *
 from . import *
 
+__MODULE__ = "Quotly"
+__HELP__ = """
+ Bantuan Untuk Quotly
+
+• Perintah :  <code>q</code>
+• Penjelasan : Untuk membuat quote.
+"""
+
 
 @ubot.on_message(filters.command("q", prefix) & filters.me)
 async def quotly(client: Client, message: Message):
