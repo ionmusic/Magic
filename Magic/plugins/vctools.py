@@ -14,6 +14,19 @@ from Magic import *
 from config import *
 from . import *
 
+__MODULE__ = "VoiceChat"
+
+__HELP__ = """
+
+Bantuan Untuk Voice Chat
+
+• Perintah: <code>{0}startvc</code>
+• Penjelasan: Untuk memulai voice chat grup.
+
+• Perintah: <code>{0}stopvc</code>
+• Penjelasan: Untuk mengakhiri voice chat grup.
+"""
+
 async def get_group_call(
     client: Client, message: Message, err_msg: str = ""
 ) -> Optional[InputGroupCall]:
