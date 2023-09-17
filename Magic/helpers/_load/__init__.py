@@ -1,6 +1,8 @@
 import os
 import logging
 
+from .clients import *
+
 def where_hosted():
     if os.getenv("DYNO"):
         return "heroku"
