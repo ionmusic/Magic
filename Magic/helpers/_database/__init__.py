@@ -181,10 +181,10 @@ def DBMagic():
     try:
         if Redis:
             return DBRedis(
-                host=Var.REDIS_URI,
-                password=Var.REDIS_PASSWORD,
+                host=config.REDIS_URI,
+                password=config.REDIS_PASSWORD,
                 platform=HOSTED_ON,
-                port=Var.REDISPORT,
+                port=config.REDISPORT,
                 decode_responses=True,
                 socket_timeout=5,
                 retry_on_timeout=True,
