@@ -119,7 +119,6 @@ class DBRedis(Database):
         return sum(self.db.memory_usage(x) for x in self.vars())
         
 def DBMagic():
-    Redis = None
     try:
         if Redis:
             return DBRedis(
@@ -134,6 +133,3 @@ def DBMagic():
     except BaseException as e:
         LOGGER(__name__).exception(e)
     exit()
-    
-    
-MDB = DBMagic()
