@@ -10,6 +10,9 @@ from Magic.plugins import ALL_MODULES
 
 from uvloop import install
 
+HELP_COMMANDS = {}
+
+
 async def done():
     try:
         await ubot.join_chat("pesulaptelegram")
