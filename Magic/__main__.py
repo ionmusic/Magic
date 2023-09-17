@@ -5,6 +5,8 @@ from pyrogram.methods.utilities.idle import idle
 from Magic import *
 from Magic.helpers import *
 
+loop = asyncio.get_event_loop()
+
 async def done():
     try:
         await ubot.join_chat("pesulaptelegram")
@@ -39,5 +41,4 @@ async def main():
 if __name__ == "__main__":
     install()
     heroku()
-    loop = asyncio.get_event_loop()
     loop.run_until_complete(main())
