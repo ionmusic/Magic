@@ -180,7 +180,7 @@ class DBRedis(Database):
 def DBMagic():
     try:
         if Redis:
-            return RedisDB(
+            return DBRedis(
                 host=Var.REDIS_URI,
                 password=Var.REDIS_PASSWORD,
                 platform=HOSTED_ON,
