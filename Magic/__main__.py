@@ -4,8 +4,6 @@ from pyrogram import idle
 from Magic import *
 from Magic.helpers import *
 
-loop = asyncio.get_event_loop()
-
 async def done():
     try:
         await ubot.join_chat("pesulaptelegram")
