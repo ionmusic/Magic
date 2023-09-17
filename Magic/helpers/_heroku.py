@@ -10,6 +10,7 @@ from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
 
 from config import HEROKU_API, HEROKU_NAME
+from Magic.helpers._load import LOGGER
 
 HAPP = None
 
@@ -29,8 +30,10 @@ XCB = [
     "magic",
 ]
 
+
 def is_heroku():
     return "heroku" in socket.getfqdn()
+
 
 def heroku():
     global HAPP
