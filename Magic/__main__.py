@@ -13,6 +13,7 @@ async def done():
 
 async def main():
     try:
+        cek_db = MDB
         if bot:
             await bot.start()
             bot_id = (await bot.get_me()).username
