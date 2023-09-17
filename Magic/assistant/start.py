@@ -3,7 +3,7 @@ from pyrogram.types import Message
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from datetime import datetime
 from Magic import *
-from Magic.plugins import *
+
 from config import *
 
 @bot.on_message(filters.command(["start"]))
