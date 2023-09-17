@@ -4,7 +4,7 @@ from pyrogram import idle
 from Magic import *
 from Magic.helpers import *
 from Magic.helpers._database import *
-from Magic.helpers._load import *
+#from Magic.helpers._load import *
 from uvloop import install
 
 async def done():
@@ -25,11 +25,11 @@ async def main():
         if ubot:
             await ubot.start()
             client_id = (await ubot.get_me()).id
-            #MDB.set_key("OWNER_ID", ubot.me.id)
+            MDB.set_key("OWNER_ID", ubot.me.id)
             LOGGER(_name__).info(f"Client ID: {client_id} Berhasil Diaktifkan")
-        #LOGGER(_name__).info(f"Koneksi Ke Database {MDB.name}...")
-        #if MDB.ping():
-            #LOGGER(_name__).info(f"Koneksi Berhasil Ke {MDB.name}..")
+        LOGGER(_name__).info(f"Koneksi Ke Database {MDB.name}...")
+        if MDB.ping():
+            LOGGER(_name__).info(f"Koneksi Berhasil Ke {MDB.name}..")
         await loadPlugins()
         
         await done()
