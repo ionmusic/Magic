@@ -22,3 +22,4 @@ gTTS
 psutil
 youtube_dl
 uvloop
+gitpython
