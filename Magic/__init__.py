@@ -5,7 +5,9 @@ from aiohttp import ClientSession
 
 from config import *
 from pyrogram import *
+from Magic.helpers._database import DBMagic
 
+MDB = DBMagic()
 
 aiosession = ClientSession()
 
