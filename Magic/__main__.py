@@ -48,13 +48,6 @@ async def main():
             ubot_mod += "|{:<15}".format(i)
         j += 1
     j = 1
-    for i in ALL_SETTINGS:
-        if j == 4:
-            bot_mod += "|{:<15}|\n".format(i)
-            j = 0
-        else:
-            bot_mod += "|{:<15}".format(i)
-        j += 1
     print("+===============================================================+")
     print("|                      Userbot Modules                          |")
     print("+===============+===============+===============+===============+")
