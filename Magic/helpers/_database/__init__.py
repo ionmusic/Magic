@@ -134,3 +134,6 @@ def DBMagic():
     except BaseException as e:
         LOGGER(__name__).exception(e)
     exit()
+    
+    
+MDB = DBMagic()
