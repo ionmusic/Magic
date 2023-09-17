@@ -12,7 +12,6 @@ from pyrogram.types import Message
 from Magic.helpers import *
 from Magic import *
 from config import *
-from . import *
 
 __MODULE__ = "VoiceChat"
 
