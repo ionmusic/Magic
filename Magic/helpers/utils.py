@@ -62,7 +62,7 @@ async def extract_userid(message, text: str):
 async def extract_user(message):
     return (await extract_user_and_reason(message))[0]
 
-async def extract_orang_and_alasan(message, sender_chat=False):
+async def extract_user_and_reason(message, sender_chat=False):
     anu = message.text.strip().split()
     anuan = message.text
     orang = None
