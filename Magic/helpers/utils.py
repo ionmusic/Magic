@@ -61,3 +61,38 @@ async def extract_userid(message, text: str):
 
 async def extract_user(message):
     return (await extract_user_and_reason(message))[0]
+
+async def extract_orang_and_alasan(message, sender_chat=False):
+    anu = message.text.strip().split()
+    anuan = message.text
+    orang = None
+    alasan = None
+    if message.reply_to_message:
+        reply = message.reply_to_message
+        if not reply.from_user:
+            if (
+                reply.sender_chat
+                and reply.sender_chat != message.chat.id
+                and sender_chat
+            ):
+                mmk = reply.sender_chat.id
+            else:
+                return None, None
+        else:
+            mmk = reply.from_user.id
+
+        if len(anu) < 2:
+            alasan = None
+        else:
+            alasan = anuan.split(None, 1)[1]
+        return mmk, alasan
+
+    if len(anu) == 2:
+        orang = anuan.split(None, 1)[1]
+        return await extract_userid(message, orang), None
+
+    if len(anu) > 2:
+        orang, alasan = anuan.split(None, 2)[1:]
+        return await extract_userid(message, orang), alasan
+
+    return orang, alasan
