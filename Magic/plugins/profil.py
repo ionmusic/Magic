@@ -5,6 +5,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import *
+from Magic import *
 from Magic.helpers.utils import edit_or_reply
 from Magic.helpers.utils import extract_user
 
