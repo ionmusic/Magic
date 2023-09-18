@@ -130,6 +130,7 @@ class DBRedis(Database):
         port,
         password,
         platform="",
+        logger=LOGS,
         *args,
         **kwargs,
     ):
@@ -138,12 +139,12 @@ class DBRedis(Database):
             host = spli_[0]
             port = int(spli_[-1])
             if host.startswith("http"):
-                print("REDIS_URI tidak perlu menggunakan https://")
+                logger.print("REDIS_URI tidak perlu menggunakan https://")
                 import sys
 
                 sys.exit()
         elif not host or not port:
-            print("Port tidak ditemukan.")
+            logger.print("Port tidak ditemukan.")
             import sys
 
             sys.exit()
@@ -194,6 +195,34 @@ def DBMagic():
     except BaseException as e:
         LOGGER(__name__).exception(e)
     exit()
-    
+
+def DBLocal():
+    _er = False
+    from .. import HOSTED_ON
+    try:
+        if Redis:
+            return DBRedis(
+                host=config.REDIS_URI,
+                password=config.REDIS_PASSWORD,
+                port=config.REDISPORT,
+                platform=HOSTED_ON,
+                decode_responses=True,
+                socket_timeout=5,
+                retry_on_timeout=True,
+            )
+        if MongoClient:
+            return MongoDB(config.MONGO_URI)
+        if RedisClient:
+            return (config.REDIS_URI)
+    except BaseException as err:
+        LOGS.exception(err)
+        error = True
+    if not error:
+        LOGS.critical(
+            "No DB requirement fullfilled!\nPlease install redis or mongo dependencies...\nTill then using local file as database."
+        )
+    if HOSTED_ON == "termux":
+        return DBLocal()
+    exit()
     
 MDB = DBMagic()
