@@ -24,7 +24,7 @@ flood = {}
 pp = "Magic/plugins/resource/pp.jpg"
 
 
-@ubot.on_message(filters.command(["block"], prefix) & filters.me)
+@ubot.on_message(filters.command("block", prefix) & filters.me)
 async def block_user_func(client: Client, message: Message):
     mmk = await extract_user(message)
     kontol = await edit_or_reply(message, "`Processing . . .`")
@@ -39,7 +39,7 @@ async def block_user_func(client: Client, message: Message):
     await message.edit(f"**Berhasil Memblokir** {umention}")
 
 
-@ubot.on_message(filters.command(["unblock"], prefix) & filters.me)
+@ubot.on_message(filters.command("unblock", prefix) & filters.me)
 async def unblock_user_func(client: Client, message: Message):
     mmk = await extract_user(message)
     kontol = await edit_or_reply(message, "`Processing . . .`")
@@ -54,7 +54,7 @@ async def unblock_user_func(client: Client, message: Message):
     await message.edit(f"**Berhasil Membuka Blokir** {umention}")
 
 
-@ubot.on_message(filters.command(["setname"], prefix) & filters.me)
+@ubot.on_message(filters.command("setname", prefix) & filters.me)
 async def setname(client: Client, message: Message):
     kontol = await edit_or_reply(message, "`Processing . . .`")
     if len(message.command) == 1:
@@ -74,7 +74,7 @@ async def setname(client: Client, message: Message):
         )
 
 
-@ubot.on_message(filters.command(["setbio"], prefix) & filters.me)
+@ubot.on_message(filters.command("setbio", prefix) & filters.me)
 async def set_bio(client: Client, message: Message):
     kontol = await edit_or_reply(message, "`Processing . . .`")
     if len(message.command) == 1:
@@ -90,7 +90,7 @@ async def set_bio(client: Client, message: Message):
         return await kontol.edit("Berikan teks untuk ditetapkan sebagai bio.")
 
 
-@ubot.on_message(filters.me & filters.command(["setpp"], prefix))
+@ubot.on_message(filters.me & filters.command("setpp", prefix))
 async def set_pp(client: Client, message: Message):
     replied = message.reply_to_message
     if (
@@ -114,7 +114,7 @@ async def set_pp(client: Client, message: Message):
         await message.delete()
 
 
-@ubot.on_message(filters.me & filters.command(["vpp"], prefix))
+@ubot.on_message(filters.me & filters.command("vpp", prefix))
 async def view_pp(client: Client, message: Message):
     mmk = await extract_user(message)
     if mmk:
