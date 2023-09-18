@@ -13,14 +13,14 @@ if config.REDIS_URI:
     try:
         from redis import Redis
     except ImportError:
-        LOGS.info("Installing 'redis' for database.")
+        print("Installing 'redis' for database.")
         os.system("pip3 install -q redis hiredis")
         from redis import Redis
 elif config.MONGO_URL:
     try:
         from pymongo import MongoClient as MongoDB
     except ImportError:
-        LOGS.info("Installing 'pymongo' for database.")
+        print("Installing 'pymongo' for database.")
         os.system("pip3 install -q pymongo[srv]")
         from pymongo import MongoClient
 
@@ -133,7 +133,6 @@ class DBRedis(Database):
         port,
         password,
         platform="",
-        logging=LOGS,
         *args,
         **kwargs,
     ):
@@ -147,7 +146,7 @@ class DBRedis(Database):
 
                 sys.exit()
         elif not host or not port:
-            LOGS.info("Port tidak ditemukan.")
+            print("Port tidak ditemukan.")
             import sys
 
             sys.exit()
@@ -218,10 +217,10 @@ def DBLocal():
         if DBRedis:
             return (config.REDIS_URI)
     except BaseException as err:
-        LOGS.exception(err)
+        print(err)
         error = True
     if not error:
-        LOGS.critical(
+        print(
             "No DB requirement fullfilled!\nPlease install redis or mongo dependencies...\nTill then using local file as database."
         )
     if HOSTED_ON == "termux":
