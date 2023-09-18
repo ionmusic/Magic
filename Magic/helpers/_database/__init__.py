@@ -4,6 +4,7 @@ import os
 import sys
 
 import config
+import logging
 from Magic.helpers._load import HOSTED_ON
 
 
@@ -12,12 +13,14 @@ if config.REDIS_URI:
     try:
         from redis import Redis
     except ImportError:
+        LOGS.info("Installing 'redis' for database.")
         os.system("pip3 install -q redis hiredis")
         from redis import Redis
 elif config.MONGO_URL:
     try:
         from pymongo import MongoClient as MongoDB
     except ImportError:
+        LOGS.info("Installing 'pymongo' for database.")
         os.system("pip3 install -q pymongo[srv]")
         from pymongo import MongoClient
 
@@ -130,7 +133,7 @@ class DBRedis(Database):
         port,
         password,
         platform="",
-        logger=LOGS,
+        logging=LOGS,
         *args,
         **kwargs,
     ):
@@ -139,12 +142,12 @@ class DBRedis(Database):
             host = spli_[0]
             port = int(spli_[-1])
             if host.startswith("http"):
-                logger.print("REDIS_URI tidak perlu menggunakan https://")
+                LOGS.info("REDIS_URI tidak perlu menggunakan https://")
                 import sys
 
                 sys.exit()
         elif not host or not port:
-            logger.print("Port tidak ditemukan.")
+            LOGS.info("Port tidak ditemukan.")
             import sys
 
             sys.exit()
@@ -210,9 +213,9 @@ def DBLocal():
                 socket_timeout=5,
                 retry_on_timeout=True,
             )
-        if MongoClient:
+        if DBMongo:
             return MongoDB(config.MONGO_URI)
-        if RedisClient:
+        if DBRedis:
             return (config.REDIS_URI)
     except BaseException as err:
         LOGS.exception(err)
