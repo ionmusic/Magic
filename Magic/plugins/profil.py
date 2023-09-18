@@ -21,7 +21,7 @@ def ReplyCheck(message: Message):
 
 
 flood = {}
-pp = "Magic/plugins/resource/pp.jpg
+pp = "Magic/plugins/resource/pp.jpg"
 
 
 @ubot.on_message(filters.command(["block"], prefix) & filters.me)
